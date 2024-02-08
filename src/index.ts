@@ -31,6 +31,7 @@ async function setupViewer(){
     // Initialize the viewer
     const viewer = new ViewerApp({
         canvas: document.getElementById('webgi-canvas') as HTMLCanvasElement,
+        useRgbm: false,
     })
 
     // Add plugins individually.
@@ -61,16 +62,23 @@ async function setupViewer(){
     // Add more plugins not available in base, like CanvasSnipperPlugin which has helpers to download an image of the canvas.
     await viewer.addPlugin(CanvasSnipperPlugin)
 
+    const anim = await viewer.addPlugin(GLTFAnimationPlugin)
+
     // Import and add a GLB file.
-    await viewer.load("./assets/classic-watch.glb")
+    await viewer.load("./assets/scene.glb")
 
     // Load an environment map if not set in the glb file
     // await viewer.setEnvironmentMap("./assets/environment.hdr");
 
     // Add some UI for tweak and testing.
-    const uiPlugin = await viewer.addPlugin(TweakpaneUiPlugin)
+    //const uiPlugin = await viewer.addPlugin(TweakpaneUiPlugin)
     // Add plugins to the UI to see their settings.
-    uiPlugin.setupPlugins<IViewerPlugin>(TonemapPlugin, CanvasSnipperPlugin)
+    //uiPlugin.setupPlugins<IViewerPlugin>(TonemapPlugin, CanvasSnipperPlugin)
+    anim.animateOnScroll = false;
+    anim.loopAnimations = true;
+    await anim.playAnimation();
+
+
 
 }
 
