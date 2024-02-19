@@ -25,6 +25,8 @@ import {
     // Texture, // Import THREE.js internals
 } from "webgi";
 import "./styles.css";
+import gsap from "gsap";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
 
 async function setupViewer(){
 
@@ -34,6 +36,10 @@ async function setupViewer(){
         useRgbm: false,
     })
 
+    // const manager = await viewer.addPlugin(AssetManagerPlugin);
+    const camera = viewer.scene.activeCamera
+    const position = camera.position
+    const target = camera.target
     // Add plugins individually.
     // await viewer.addPlugin(GBufferPlugin)
     // await viewer.addPlugin(new ProgressivePlugin(32))
@@ -45,7 +51,7 @@ async function setupViewer(){
     // await viewer.addPlugin(FrameFadePlugin)
     // await viewer.addPlugin(GLTFAnimationPlugin)
     // await viewer.addPlugin(GroundPlugin)
-    // await viewer.addPlugin(BloomPlugin)
+    //await viewer.addPlugin(BloomPlugin)
     // await viewer.addPlugin(TemporalAAPlugin)
     // await viewer.addPlugin(AnisotropyPlugin)
     // and many more...
@@ -79,7 +85,36 @@ async function setupViewer(){
     await anim.playAnimation();
 
 
+    function setupScrollAnimation() {
+        const tl = gsap.timeline()
+    
+        tl.to(position, 
+            {x: 5, 
+            duration:4,
+            scrollTrigger: {
+                trigger:".second", markers: true
+            },
+            onUpdate
+        })
+    }
 
+    setupScrollAnimation()
+
+    let needsUpdate = true;
+
+    function onUpdate() {
+        needsUpdate = true; 
+        viewer.renderer.resetShadows()
+    }
+
+    viewer.addEventListener('preFrame', ()=>{
+        if(needsUpdate) {
+            camera.positionUpdated(false)
+            camera.targetUpdated(true)
+            needsUpdate = false
+        }
+    })
 }
+
 
 setupViewer()
