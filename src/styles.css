@@ -2,13 +2,14 @@ body {
   font-family: sans-serif;  margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-color:#131414;
 }
 #webgi-canvas {
   width: 100%;
   height: 100%;
   border-radius: 0.5rem;
+
   position: fixed;
-  margin-left: 300px;
   z-index: -1;
   top: 0;
 }
@@ -30,11 +31,20 @@ body {
   align-items: center;
 }
 
-.buy-now {
+.our-story {
   color: white;
+  width: 12rem;
+  font-weight: 800;
+  margin-left: 10rem;
+  font-size: large;
+}
+.shopping-cart {
+  color: #212529;
   border-radius: 30px;
-  background-color: #212529;
+  background-color: white;
   width: 9rem;
+  font-weight: 800;
+  margin-right: 10rem;
 }
 
 .explore {
@@ -55,6 +65,10 @@ body {
   font-weight: 700;
 }
 
+h2, h1, p {
+  color: white;
+}
+
 h2 {
   font-weight: 800;
 }
@@ -73,3 +87,18 @@ h1 {
   margin-right: 15%;
 }
 
+.selection {
+  margin-left: 9rem;
+}
+
+.arrowIcon {
+  font-size: 42px;
+}
+
+.selection-button{
+  width: 45px;
+}
+
+.button-parent {
+  align-items: center;
+}

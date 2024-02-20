@@ -6,17 +6,21 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel="stylesheet" href="./bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-	<div class="d-flex justify-content-end">
-		<button type="button" class="btn btn-md mt-4 me-4 buy-now">BUY NOW</button>
+
+	<div class="d-flex justify-content-between">
+		<button type="button" class="btn btn-md mt-4 me-4 our-story">Our Story</button>
+		<button type="button" class="btn btn-md mt-4 shopping-cart"><i class="fas fa-shopping-cart"></i> Cart</button>
 	</div>
 
 	<section class="section first ">
 		<div class="section-container-left">
 			<h1>Perfect Hoodie?</h1>
-			<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere est, ipsum itaque quam quos fugit quod nostrum ad earum! Molestias doloribus vel natus, rem fuga corrupti quo in aliquam libero.</p>
+			<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere est, ipsum itaque quam quos fugit quod
+				nostrum ad earum! Molestias doloribus vel natus, rem fuga corrupti quo in aliquam libero.</p>
 			<button type="button" class="btn btn-md mt-4 me-4 explore">KNOW MORE</button>
 		</div>
 	</section>
@@ -24,26 +28,32 @@
 	<section class="section second d-flex justify-content-end">
 		<div class="section-container-right d-flex flex-column">
 			<h2>Comfort Comes First</h2>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur ipsam, laborum iste incidunt laboriosam vitae quisquam provident quibusdam iure asperiores corrupti soluta totam illo consequuntur. Iure dolorum dolore modi maxime!</p>
+			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur ipsam, laborum iste incidunt
+				laboriosam vitae quisquam provident quibusdam iure asperiores corrupti soluta totam illo consequuntur.
+				Iure dolorum dolore modi maxime!</p>
 		</div>
 	</section>
 
-	<section class="section thrird">
+	<section class="section third">
 		<div class="section-container-left">
 			<h2>Stylish To The SOUL</h2>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur ipsam, laborum iste incidunt laboriosam vitae quisquam provident quibusdam iure asperiores corrupti soluta totam illo consequuntur. Iure dolorum dolore modi maxime!</p>
-		</div>
-	</section>
-
-
-	<section class="section forth">
-		<div class="section-container-left">
-			<h1>Pick Your Poison</h1>
+			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur ipsam, laborum iste incidunt
+				laboriosam vitae quisquam provident quibusdam iure asperiores corrupti soluta totam illo consequuntur.
+				Iure dolorum dolore modi maxime!</p>
 		</div>
 	</section>
 
 
 	<div id="webgi-canvas-container">
+		<section class="section fourth d-flex justify-content-start">
+			<div class="d-flex flex-column justify-content-center selection h-100 ">
+					<h1>PICK YOUR EVERYTHING</h1>
+				<div class="d-flex flex-column button-parent">
+					<button type="button" class="btn selection-button"><i class="fa-solid fa-circle-arrow-left arrowIcon"></i></button>
+					<button type="button" class="btn selection-button"><i class="fa-solid fa-circle-arrow-right arrowIcon"></i></button>
+				</div>
+			</div>
+		</section>
 		<canvas id="webgi-canvas"></canvas>
 	</div>
 

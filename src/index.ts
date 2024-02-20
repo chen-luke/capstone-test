@@ -27,6 +27,9 @@ import {
 import "./styles.css";
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import * as THREE from 'three';
+
+gsap.registerPlugin(ScrollTrigger)
 
 async function setupViewer(){
 
@@ -71,7 +74,7 @@ async function setupViewer(){
     const anim = await viewer.addPlugin(GLTFAnimationPlugin)
 
     // Import and add a GLB file.
-    await viewer.load("./assets/scene.glb")
+    await viewer.load("./assets/scene2.glb")
 
     // Load an environment map if not set in the glb file
     // await viewer.setEnvironmentMap("./assets/environment.hdr");
@@ -84,23 +87,9 @@ async function setupViewer(){
     anim.loopAnimations = true;
     await anim.playAnimation();
 
-
-    function setupScrollAnimation() {
-        const tl = gsap.timeline()
-    
-        tl.to(position, 
-            {x: 5, 
-            duration:4,
-            scrollTrigger: {
-                trigger:".second", markers: true
-            },
-            onUpdate
-        })
-    }
-
+    let needsUpdate = true;
     setupScrollAnimation()
 
-    let needsUpdate = true;
 
     function onUpdate() {
         needsUpdate = true; 
@@ -109,11 +98,58 @@ async function setupViewer(){
 
     viewer.addEventListener('preFrame', ()=>{
         if(needsUpdate) {
-            camera.positionUpdated(false)
+            camera.positionUpdated(true)
             camera.targetUpdated(true)
             needsUpdate = false
         }
     })
+
+        function setupScrollAnimation() {
+        const tl = gsap.timeline()
+    
+        tl.to(position, {x: 0.55, y:0.51, z:-3.77, duration:3,
+            scrollTrigger: {
+                trigger: ".second",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(target, {x: -0.5, y:0.38, z:0.35, duration:3,
+            scrollTrigger: {
+                trigger: ".second",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(position, {x: 0.94, y:3.2, z:3.22, duration:3,
+            scrollTrigger: {
+                trigger: ".third",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(target, {x: -0.5, y:0.38, z:0.35, duration:3,
+            scrollTrigger: {
+                trigger: ".second",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(position, {x: -0.93, y:1.9, z:7.22, duration:3,
+            scrollTrigger: {
+                trigger: ".fourth",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(target, {x: -0.5, y:0.154, z:0.48, duration:3,
+            scrollTrigger: {
+                trigger: ".fourth",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+    }
 }
 
 
