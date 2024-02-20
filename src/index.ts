@@ -114,6 +114,13 @@ async function setupViewer(){
                 end: "top top", scrub: true,
                 immediateRender: false
         }, onUpdate})
+        .to(".section-one-container", {xPercent:-100, opacity:0, 
+            scrollTrigger: {
+                trigger: ".second",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
         .to(target, {x: -0.5, y:0.38, z:0.35, duration:3,
             scrollTrigger: {
                 trigger: ".second",
@@ -128,6 +135,13 @@ async function setupViewer(){
                 end: "top top", scrub: true,
                 immediateRender: false
         }, onUpdate})
+        .to(".section-two-container", {xPercent: 100, opacity:0,
+            scrollTrigger: {
+                trigger: ".third",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
         .to(target, {x: -0.5, y:0.38, z:0.35, duration:3,
             scrollTrigger: {
                 trigger: ".second",
@@ -136,6 +150,13 @@ async function setupViewer(){
                 immediateRender: false
         }, onUpdate})
         .to(position, {x: -0.93, y:1.9, z:7.22, duration:3,
+            scrollTrigger: {
+                trigger: ".fourth",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(".section-three-container", {opacity: 0, duration:3,
             scrollTrigger: {
                 trigger: ".fourth",
                 start:"top bottom",
