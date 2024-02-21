@@ -25,6 +25,11 @@ import {
     // Texture, // Import THREE.js internals
 } from "webgi";
 import "./styles.css";
+import gsap from "gsap";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
+import * as THREE from 'three';
+
+gsap.registerPlugin(ScrollTrigger)
 
 async function setupViewer(){
 
@@ -34,6 +39,10 @@ async function setupViewer(){
         useRgbm: false,
     })
 
+    // const manager = await viewer.addPlugin(AssetManagerPlugin);
+    const camera = viewer.scene.activeCamera
+    const position = camera.position
+    const target = camera.target
     // Add plugins individually.
     // await viewer.addPlugin(GBufferPlugin)
     // await viewer.addPlugin(new ProgressivePlugin(32))
@@ -45,7 +54,7 @@ async function setupViewer(){
     // await viewer.addPlugin(FrameFadePlugin)
     // await viewer.addPlugin(GLTFAnimationPlugin)
     // await viewer.addPlugin(GroundPlugin)
-    // await viewer.addPlugin(BloomPlugin)
+    //await viewer.addPlugin(BloomPlugin)
     // await viewer.addPlugin(TemporalAAPlugin)
     // await viewer.addPlugin(AnisotropyPlugin)
     // and many more...
@@ -65,7 +74,7 @@ async function setupViewer(){
     const anim = await viewer.addPlugin(GLTFAnimationPlugin)
 
     // Import and add a GLB file.
-    await viewer.load("./assets/scene.glb")
+    await viewer.load("./assets/scene2.glb")
 
     // Load an environment map if not set in the glb file
     // await viewer.setEnvironmentMap("./assets/environment.hdr");
@@ -78,8 +87,91 @@ async function setupViewer(){
     anim.loopAnimations = true;
     await anim.playAnimation();
 
+    let needsUpdate = true;
+    setupScrollAnimation()
 
 
+    function onUpdate() {
+        needsUpdate = true; 
+        viewer.renderer.resetShadows()
+    }
+
+    viewer.addEventListener('preFrame', ()=>{
+        if(needsUpdate) {
+            camera.positionUpdated(true)
+            camera.targetUpdated(true)
+            needsUpdate = false
+        }
+    })
+
+        function setupScrollAnimation() {
+        const tl = gsap.timeline()
+    
+        tl.to(position, {x: 0.55, y:0.51, z:-3.77, duration:3,
+            scrollTrigger: {
+                trigger: ".second",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(".section-one-container", {xPercent:-100, opacity:0, 
+            scrollTrigger: {
+                trigger: ".second",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(target, {x: -0.5, y:0.38, z:0.35, duration:3,
+            scrollTrigger: {
+                trigger: ".second",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(position, {x: 0.94, y:3.2, z:3.22, duration:3,
+            scrollTrigger: {
+                trigger: ".third",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(".section-two-container", {xPercent: 100, opacity:0,
+            scrollTrigger: {
+                trigger: ".third",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(target, {x: -0.5, y:0.38, z:0.35, duration:3,
+            scrollTrigger: {
+                trigger: ".second",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(position, {x: -0.93, y:1.9, z:7.22, duration:3,
+            scrollTrigger: {
+                trigger: ".fourth",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(".section-three-container", {opacity: 0, duration:3,
+            scrollTrigger: {
+                trigger: ".fourth",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+        .to(target, {x: -0.5, y:0.154, z:0.48, duration:3,
+            scrollTrigger: {
+                trigger: ".fourth",
+                start:"top bottom",
+                end: "top top", scrub: true,
+                immediateRender: false
+        }, onUpdate})
+    }
 }
+
 
 setupViewer()

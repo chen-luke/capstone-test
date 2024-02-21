@@ -1,26 +1,28 @@
 body {
-  font-family: sans-serif;
-  overflow: hidden;
-  margin: 0;
+  font-family: sans-serif;  margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  background-color:#131414;
 }
 #webgi-canvas {
   width: 100%;
   height: 100%;
   border-radius: 0.5rem;
+
   position: fixed;
+  z-index: -1;
   top: 0;
 }
 
 #webgi-canvas-container{
   width: 100vw;
   height: 100vh;
+
 }
-.section--one--container{
+.section-container-left{
   width: 360px;
   margin-left: 15%;
 }
-
 
 .section{
   display: flex;
@@ -29,6 +31,30 @@ body {
   align-items: center;
 }
 
+.our-story {
+  color: white;
+  width: 12rem;
+  font-weight: 800;
+  margin-left: 10rem;
+  font-size: large;
+}
+.shopping-cart {
+  color: #212529;
+  border-radius: 30px;
+  background-color: white;
+  width: 9rem;
+  font-weight: 800;
+  margin-right: 10rem;
+}
+
+.explore {
+  color: #212529;
+  font-weight: 800;
+  border-radius: 30px;
+  background-color: #b9e311;
+  width: 10rem;
+  font-size: 0.8rem;
+}
 
 .first h1{
   font-size: 10rem;
@@ -36,4 +62,43 @@ body {
   letter-spacing: -0.3rem;
   width: 50%;
   margin: 0 0 30px -10px;
+  font-weight: 700;
+}
+
+h2, h1, p {
+  color: white;
+}
+
+h2 {
+  font-weight: 800;
+}
+
+h1 {
+  font-size: 5rem;
+  line-height: 5rem;
+  letter-spacing: -0.rem;
+  width: 50%;
+  margin: 0 0 30px -10px;
+  font-weight: 800;
+}
+
+.section-container-right {
+  width: 360px;
+  margin-right: 15%;
+}
+
+.selection {
+  margin-left: 9rem;
+}
+
+.arrowIcon {
+  font-size: 42px;
+}
+
+.selection-button{
+  width: 45px;
+}
+
+.button-parent {
+  align-items: center;
 }
