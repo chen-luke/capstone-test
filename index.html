@@ -8,9 +8,15 @@
 	<link rel="stylesheet" href="./bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-
+<script>
+	const handleClick = (parameter = "Hello") => {
+		console.log(parameter)
+	}
+</script>
 <body>
-
+	<button onclick="handleClick()">
+		Hello
+	</button>
 	<div class="d-flex justify-content-between">
 		<button type="button" class="btn btn-md mt-4 me-4 our-story">Our Story</button>
 		<button type="button" class="btn btn-md mt-4 shopping-cart"><i class="fas fa-shopping-cart"></i> Cart</button>
